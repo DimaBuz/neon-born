@@ -1,0 +1,226 @@
+type YearEntry<T> = [number, T]
+
+function pickByYear<T>(table: YearEntry<T>[], year: number): T {
+  let result = table[0][1]
+  for (const [from, value] of table) {
+    if (year >= from) result = value
+  }
+  return result
+}
+
+const HITS: YearEntry<{ artist: string; title: string }>[] = [
+  [1900, { artist: 'Владимир Трошин', title: 'Подмосковные вечера' }],
+  [1960, { artist: 'Майя Кристалинская', title: 'Нежность' }],
+  [1971, { artist: 'Муслим Магомаев', title: 'Синяя вечность' }],
+  [1972, { artist: 'ВИА «Самоцветы»', title: 'Мой адрес — Советский Союз' }],
+  [1973, { artist: 'ВИА «Песняры»', title: 'Косил Ясь конюшину' }],
+  [1975, { artist: 'Алла Пугачёва', title: 'Арлекино' }],
+  [1976, { artist: 'ВИА «Песняры»', title: 'Вологда' }],
+  [1978, { artist: 'Алла Пугачёва', title: 'Всё могут короли' }],
+  [1979, { artist: 'Машина времени', title: 'Поворот' }],
+  [1980, { artist: 'Лев Лещенко', title: 'До свидания, Москва' }],
+  [1982, { artist: 'Алла Пугачёва', title: 'Миллион алых роз' }],
+  [1983, { artist: 'Юрий Антонов', title: 'Крыша дома твоего' }],
+  [1984, { artist: 'Алла Пугачёва', title: 'Айсберг' }],
+  [1985, { artist: 'Modern Talking', title: 'Cheri Cheri Lady' }],
+  [1986, { artist: 'Наутилус Помпилиус', title: 'Скованные одной цепью' }],
+  [1987, { artist: 'Мираж', title: 'Музыка нас связала' }],
+  [1988, { artist: 'Ласковый май', title: 'Белые розы' }],
+  [1989, { artist: 'Кино', title: 'Звезда по имени Солнце' }],
+  [1990, { artist: 'Комбинация', title: 'American Boy' }],
+  [1991, { artist: 'Технология', title: 'Нажми на кнопку' }],
+  [1992, { artist: 'Комбинация', title: 'Бухгалтер' }],
+  [1993, { artist: 'Агата Кристи', title: 'Как на войне' }],
+  [1994, { artist: 'Валерий Меладзе', title: 'Сэра' }],
+  [1995, { artist: 'Леонид Агутин', title: 'Хоп хэй лала лэй' }],
+  [1996, { artist: 'Лицей', title: 'Осень' }],
+  [1997, { artist: 'Иванушки International', title: 'Тучи' }],
+  [1998, { artist: 'Мумий Тролль', title: 'Владивосток 2000' }],
+  [1999, { artist: 'Земфира', title: 'Ромашки' }],
+  [2000, { artist: 'Би-2', title: 'Полковнику никто не пишет' }],
+  [2001, { artist: 't.A.T.u.', title: 'Я сошла с ума' }],
+  [2002, { artist: 'ВИА Гра', title: 'Стоп! Стоп! Стоп!' }],
+  [2003, { artist: 'Звери', title: 'Всё, что тебя касается' }],
+  [2004, { artist: 'Звери', title: 'Районы-кварталы' }],
+  [2006, { artist: 'Дима Билан', title: 'Never Let You Go' }],
+  [2007, { artist: 'Serebro', title: 'Song #1' }],
+  [2008, { artist: 'Дима Билан', title: 'Believe' }],
+  [2009, { artist: 'Винтаж', title: 'Ева' }],
+  [2010, { artist: 'Ёлка', title: 'Прованс' }],
+  [2011, { artist: 'Нюша', title: 'Больно' }],
+  [2012, { artist: 'Бурановские бабушки', title: 'Party for Everybody' }],
+  [2013, { artist: 'Иван Дорн', title: 'Стыцамен' }],
+  [2014, { artist: 'Егор Крид', title: 'Самая самая' }],
+  [2015, { artist: 'Полина Гагарина', title: 'A Million Voices' }],
+  [2016, { artist: 'Сергей Лазарев', title: 'You Are the Only One' }],
+  [2017, { artist: 'Грибы', title: 'Тает лёд' }],
+  [2018, { artist: 'Монеточка', title: 'Каждый раз' }],
+  [2019, { artist: 'Тима Белорусских', title: 'Мокрые кроссы' }],
+  [2020, { artist: 'Little Big', title: 'Uno' }],
+  [2021, { artist: 'Manizha', title: 'Russian Woman' }],
+  [2022, { artist: 'SHAMAN', title: 'Встанем' }],
+  [2023, { artist: 'ANNA ASTI', title: 'Царица' }],
+  [2024, { artist: 'Ваня Дмитриенко', title: 'Венера-Юпитер' }],
+]
+
+const SCREEN: YearEntry<{ title: string; kind: string }>[] = [
+  [1900, { title: 'Карнавальная ночь', kind: 'фильм' }],
+  [1957, { title: 'Летят журавли', kind: 'фильм' }],
+  [1962, { title: 'Человек-амфибия', kind: 'фильм' }],
+  [1965, { title: 'Операция «Ы» и другие приключения Шурика', kind: 'фильм' }],
+  [1967, { title: 'Кавказская пленница', kind: 'фильм' }],
+  [1969, { title: 'Бриллиантовая рука', kind: 'фильм' }],
+  [1970, { title: 'Белое солнце пустыни', kind: 'фильм' }],
+  [1971, { title: 'Джентльмены удачи', kind: 'фильм' }],
+  [1973, { title: 'Семнадцать мгновений весны', kind: 'телесериал' }],
+  [1975, { title: 'Афоня', kind: 'фильм' }],
+  [1976, { title: 'Ирония судьбы, или С лёгким паром!', kind: 'телефильм' }],
+  [1977, { title: 'Служебный роман', kind: 'фильм' }],
+  [1979, { title: 'Место встречи изменить нельзя', kind: 'телесериал' }],
+  [1980, { title: 'Москва слезам не верит', kind: 'фильм' }],
+  [1982, { title: 'Покровские ворота', kind: 'телефильм' }],
+  [1983, { title: 'Вокзал для двоих', kind: 'фильм' }],
+  [1985, { title: 'Гостья из будущего', kind: 'телесериал' }],
+  [1986, { title: 'Кин-дза-дза!', kind: 'фильм' }],
+  [1988, { title: 'Собачье сердце', kind: 'телефильм' }],
+  [1989, { title: 'Интердевочка', kind: 'фильм' }],
+  [1990, { title: 'Поле чудес', kind: 'телешоу' }],
+  [1992, { title: 'Санта-Барбара', kind: 'телесериал' }],
+  [1994, { title: 'Утомлённые солнцем', kind: 'фильм' }],
+  [1995, { title: 'Особенности национальной охоты', kind: 'фильм' }],
+  [1997, { title: 'Брат', kind: 'фильм' }],
+  [1998, { title: 'Улицы разбитых фонарей', kind: 'телесериал' }],
+  [2000, { title: 'Брат 2', kind: 'фильм' }],
+  [2002, { title: 'Бригада', kind: 'телесериал' }],
+  [2003, { title: 'Бумер', kind: 'фильм' }],
+  [2004, { title: 'Ночной дозор', kind: 'фильм' }],
+  [2005, { title: '9 рота', kind: 'фильм' }],
+  [2006, { title: 'Остров', kind: 'фильм' }],
+  [2007, { title: 'Ирония судьбы. Продолжение', kind: 'фильм' }],
+  [2008, { title: 'Стиляги', kind: 'фильм' }],
+  [2009, { title: 'Обитаемый остров', kind: 'фильм' }],
+  [2010, { title: 'Ёлки', kind: 'фильм' }],
+  [2012, { title: 'Кухня', kind: 'телесериал' }],
+  [2013, { title: 'Горько!', kind: 'фильм' }],
+  [2015, { title: 'Мажор', kind: 'телесериал' }],
+  [2016, { title: 'Экипаж', kind: 'фильм' }],
+  [2017, { title: 'Движение вверх', kind: 'фильм' }],
+  [2019, { title: 'Т-34', kind: 'фильм' }],
+  [2020, { title: 'Холоп', kind: 'фильм' }],
+  [2021, { title: 'Майор Гром: Чумной Доктор', kind: 'фильм' }],
+  [2023, { title: 'Слово пацана', kind: 'телесериал' }],
+  [2024, { title: 'Мастер и Маргарита', kind: 'фильм' }],
+]
+
+const NEWS: YearEntry<{ program: string; channel: string }>[] = [
+  [1900, { program: 'Последние известия', channel: 'Первая программа ЦТ' }],
+  [1968, { program: 'Время', channel: 'Первая программа ЦТ' }],
+  [1991, { program: 'Время', channel: '1-й канал Останкино' }],
+  [1995, { program: 'Время', channel: 'ОРТ' }],
+  [2002, { program: 'Время', channel: 'Первый канал' }],
+]
+
+const ICE_CREAM: YearEntry<string>[] = [
+  [1900, '20 коп.'],
+  [1991, '≈ 1 руб.'],
+  [1992, '≈ 15 руб.'],
+  [1993, '≈ 150 руб.'],
+  [1995, '≈ 2 000 руб.'],
+  [1997, '≈ 3 500 руб.'],
+  [1998, '≈ 5 руб.'],
+  [2001, '≈ 9 руб.'],
+  [2005, '≈ 15 руб.'],
+  [2010, '≈ 25 руб.'],
+  [2015, '≈ 45 руб.'],
+  [2020, '≈ 65 руб.'],
+  [2023, '≈ 90 руб.'],
+]
+
+const CINEMA: YearEntry<string>[] = [
+  [1900, '50 коп.'],
+  [1991, '≈ 3 руб.'],
+  [1993, '≈ 500 руб.'],
+  [1995, '≈ 5 000 руб.'],
+  [1998, '≈ 30 руб.'],
+  [2001, '≈ 80 руб.'],
+  [2005, '≈ 150 руб.'],
+  [2010, '≈ 250 руб.'],
+  [2015, '≈ 300 руб.'],
+  [2020, '≈ 350 руб.'],
+  [2023, '≈ 450 руб.'],
+]
+
+const METRO: YearEntry<string>[] = [
+  [1900, '5 коп.'],
+  [1991, '15 коп.'],
+  [1992, '≈ 1 руб.'],
+  [1993, '≈ 30 руб.'],
+  [1995, '≈ 1 500 руб.'],
+  [1998, '4 руб.'],
+  [2001, '7 руб.'],
+  [2004, '13 руб.'],
+  [2006, '15 руб.'],
+  [2008, '19 руб.'],
+  [2010, '26 руб.'],
+  [2013, '30 руб.'],
+  [2014, '40 руб.'],
+  [2015, '50 руб.'],
+  [2017, '55 руб.'],
+  [2020, '57 руб.'],
+  [2022, '61 руб.'],
+  [2024, '65 руб.'],
+]
+
+const INVENTIONS: { year: number; name: string }[] = [
+  { year: 1961, name: 'Полёт Гагарина' },
+  { year: 1967, name: 'Цветное ТВ в СССР' },
+  { year: 1969, name: 'Человек на Луне' },
+  { year: 1979, name: 'Плеер Walkman' },
+  { year: 1981, name: 'Персональный компьютер IBM PC' },
+  { year: 1982, name: 'Компакт-диск' },
+  { year: 1984, name: 'Тетрис' },
+  { year: 1986, name: 'Станция «Мир»' },
+  { year: 1991, name: 'Всемирная паутина' },
+  { year: 1991, name: 'Сотовая связь в России' },
+  { year: 1992, name: 'SMS' },
+  { year: 1993, name: 'MP3' },
+  { year: 1995, name: 'DVD' },
+  { year: 1997, name: 'Яндекс' },
+  { year: 1997, name: 'Wi-Fi' },
+  { year: 1998, name: 'Google' },
+  { year: 2000, name: 'USB-флешка' },
+  { year: 2001, name: 'Википедия' },
+  { year: 2003, name: 'Skype' },
+  { year: 2004, name: 'Facebook' },
+  { year: 2005, name: 'YouTube' },
+  { year: 2006, name: 'ВКонтакте' },
+  { year: 2007, name: 'iPhone' },
+  { year: 2010, name: 'Instagram' },
+  { year: 2011, name: 'Яндекс Такси' },
+  { year: 2013, name: 'Telegram' },
+  { year: 2016, name: 'TikTok' },
+  { year: 2022, name: 'ChatGPT' },
+]
+
+function sampleEvenly<T>(items: T[], count: number) {
+  if (items.length <= count) return items
+  const step = (items.length - 1) / (count - 1)
+  return Array.from({ length: count }, (_, i) => items[Math.round(i * step)])
+}
+
+export function getEra(date: Date) {
+  const year = date.getFullYear()
+  const notYet = INVENTIONS.filter((i) => i.year > year)
+  return {
+    hit: pickByYear(HITS, year),
+    screen: pickByYear(SCREEN, year),
+    news: pickByYear(NEWS, year),
+    prices: {
+      iceCream: pickByYear(ICE_CREAM, year),
+      cinema: pickByYear(CINEMA, year),
+      metro: pickByYear(METRO, year),
+    },
+    notYet: sampleEvenly(notYet, 8),
+    soviet: year < 1992,
+  }
+}
